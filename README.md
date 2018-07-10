@@ -10,8 +10,6 @@
   <p>Toggle your Jest boolean config settings at will</p>
 </div>
 
-![Watch](FIXME:GIF)
-
 ## Usage
 
 ### Install
