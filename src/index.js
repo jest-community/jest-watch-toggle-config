@@ -6,18 +6,20 @@ class JestWatchTogglePlugin {
       )
     }
 
-    const errors = []
-    for (const param of ['key', 'prompt', 'setting']) {
-      const value = String(config[param] || '').trim()
-      if (!value) {
-        errors.push(`Missing configuration parameter: ${param}`)
-        continue
-      }
-      this[param] = value
+    this.setting = getConfigValue(config, 'setting')
+
+    if (!this.setting) {
+      throw new Error(
+        'JestWatchTogglePlugin needs at least a `setting` configuration parameter',
+      )
     }
-    if (errors.length > 0) {
-      throw new Error(errors.join('\n'))
-    }
+
+    const defaults = DEFAULT_CONFIG[this.setting] || {}
+    this.key =
+      getConfigValue(config, 'key', defaults) || this.setting[0].toLowerCase()
+    this.prompt =
+      getConfigValue(config, 'prompt', defaults) ||
+      `turn %ONOFF% ${this.setting}`
   }
 
   getUsageInfo(globalConfig) {
@@ -32,6 +34,23 @@ class JestWatchTogglePlugin {
     updateConfigAndRun({ [this.setting]: !globalConfig[this.setting] })
     return Promise.resolve()
   }
+}
+
+const DEFAULT_CONFIG = {
+  bail: { key: 'b', prompt: 'turn %ONOFF% bailing at first error' },
+  collectCoverage: {
+    key: 'e',
+    prompt: 'turn %ONOFF% code coverage collection',
+  },
+  notify: { key: 'n', prompt: 'turn %ONOFF% desktop notifications' },
+  verbose: { key: 'v', prompt: 'turn %ONOFF% test verbosity' },
+}
+
+function getConfigValue(config, setting, defaults = {}) {
+  return (
+    String(config[setting] || '').trim() ||
+    String(defaults[setting] || '').trim()
+  )
 }
 
 module.exports = JestWatchTogglePlugin

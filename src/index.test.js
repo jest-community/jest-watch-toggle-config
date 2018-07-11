@@ -9,20 +9,59 @@ describe('Jest Watch Toggle Plugin', () => {
       expect(() => new Plugin({})).toThrow(/Missing plugin configuration/)
     })
 
-    it('requires all three mandatory parameters', () => {
-      const config = { key: 'v', prompt: 'V', setting: 'v' }
-
-      // A single param missing is enough
-      for (const param of ['key', 'prompt', 'setting']) {
-        expect(
-          () => new Plugin({ config: { ...config, [param]: '  ' } }),
-        ).toThrow(`Missing configuration parameter: ${param}`)
-      }
-
-      // Single exception for all missing params
+    it('requires the setting parameter', () => {
       expect(() => new Plugin({ config: {} })).toThrow(
-        /Missing.*key.*prompt.*setting/s,
+        /needs at least a `setting` configuration parameter/
       )
+    })
+
+    it('uses the provided key and prompt configuration, if any', () => {
+      const config = { key: 'a', prompt: 'b', setting: 'c' }
+      const plugin = new Plugin({ config })
+      for (const [key, value] of Object.entries(config)) {
+        expect(plugin).toHaveProperty(key, value)
+      }
+    })
+
+    describe('when predefined defaults are available, it uses them', () => {
+      it('for `bail`', () => {
+        const plugin = new Plugin({ config: { setting: 'bail' } })
+        expect(plugin).toHaveProperty('key', 'b')
+        expect(plugin).toHaveProperty(
+          'prompt',
+          'turn %ONOFF% bailing at first error'
+        )
+      })
+
+      it('for `collectCoverage`', () => {
+        const plugin = new Plugin({ config: { setting: 'collectCoverage' } })
+        expect(plugin).toHaveProperty('key', 'e')
+        expect(plugin).toHaveProperty(
+          'prompt',
+          'turn %ONOFF% code coverage collection'
+        )
+      })
+
+      it('for `notify`', () => {
+        const plugin = new Plugin({ config: { setting: 'notify' } })
+        expect(plugin).toHaveProperty('key', 'n')
+        expect(plugin).toHaveProperty(
+          'prompt',
+          'turn %ONOFF% desktop notifications'
+        )
+      })
+
+      it('for `verbose`', () => {
+        const plugin = new Plugin({ config: { setting: 'verbose' } })
+        expect(plugin).toHaveProperty('key', 'v')
+        expect(plugin).toHaveProperty('prompt', 'turn %ONOFF% test verbosity')
+      })
+    })
+
+    it('synthetizes defaults when they are not available', () => {
+      const plugin = new Plugin({ config: { setting: 'FooBar' } })
+      expect(plugin).toHaveProperty('key', 'f')
+      expect(plugin).toHaveProperty('prompt', 'turn %ONOFF% FooBar')
     })
   })
 
