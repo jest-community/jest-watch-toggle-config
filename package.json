@@ -1,5 +1,5 @@
 {
-  "name": "jest-watch-toggle",
+  "name": "jest-watch-toggle-config",
   "version": "1.0.0",
   "description": "Jest watch plugin for toggling boolean settings (e.g. verbosity, test coverage)",
   "main": "src/index.js",
@@ -14,16 +14,16 @@
     "jest",
     "plugin",
     "watch",
-    "verbosity"
+    "toggle"
   ],
   "author": "Christophe Porteneuve <christophe@delicious-insights.com> (https://delicious-insights.com/)",
   "bugs": {
-    "url": "https://github.com/jest-community/jest-watch-toggle-coverage/issues"
+    "url": "https://github.com/deliciousinsights/jest-watch-toggle-config/issues"
   },
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git@github.com/jest-community/jest-watch-toggle-coverage"
+    "url": "git@github.com/deliciousinsights/jest-watch-toggle-config"
   },
   "devDependencies": {
     "eslint": "^4.19.1",
@@ -38,6 +38,6 @@
     "prettier": "^1.13.5"
   },
   "peerDependencies": {
-    "jest": ">= 23.4.0"
+    "jest": ">= 23.4.1"
   }
 }

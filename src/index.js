@@ -2,7 +2,7 @@ class JestWatchTogglePlugin {
   constructor({ config } = {}) {
     if (!config) {
       throw new Error(
-        'Missing plugin configuration. Are you sure you’re using Jest 23.3+?',
+        'Missing plugin configuration. Are you sure you’re using Jest 23.3+?'
       )
     }
 
@@ -10,7 +10,7 @@ class JestWatchTogglePlugin {
 
     if (!this.setting) {
       throw new Error(
-        'JestWatchTogglePlugin needs at least a `setting` configuration parameter',
+        'JestWatchTogglePlugin needs at least a `setting` configuration parameter'
       )
     }
 
