@@ -18,12 +18,12 @@
   ],
   "author": "Christophe Porteneuve <christophe@delicious-insights.com> (https://delicious-insights.com/)",
   "bugs": {
-    "url": "https://github.com/deliciousinsights/jest-watch-toggle-config/issues"
+    "url": "https://github.com/jest-community/jest-watch-toggle-config/issues"
   },
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git@github.com/deliciousinsights/jest-watch-toggle-config"
+    "url": "git@github.com/jest-community/jest-watch-toggle-config"
   },
   "devDependencies": {
     "eslint": "^4.19.1",
