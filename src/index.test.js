@@ -18,8 +18,8 @@ describe('Jest Watch Toggle Plugin', () => {
     it('uses the provided key and prompt configuration, if any', () => {
       const config = { key: 'a', prompt: 'b', setting: 'c' }
       const plugin = new Plugin({ config })
-      for (const [key, value] of Object.entries(config)) {
-        expect(plugin).toHaveProperty(key, value)
+      for (const key of Object.keys(config)) {
+        expect(plugin).toHaveProperty(key, config[key])
       }
     })
 
