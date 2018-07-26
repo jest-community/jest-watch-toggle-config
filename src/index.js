@@ -1,16 +1,23 @@
+const chalk = require('chalk')
+const { ValidationError } = require('jest-validate')
+
 class JestWatchTogglePlugin {
   constructor({ config } = {}) {
     if (!config) {
-      throw new Error(
-        'Missing plugin configuration. Are you sure you’re using Jest 23.3+?'
+      errorOut(
+        `Missing plugin configuration. Are you sure you’re using ${chalk.bold.red(
+          'Jest 23.3+'
+        )}?`
       )
     }
 
     this.setting = getConfigValue(config, 'setting')
 
     if (!this.setting) {
-      throw new Error(
-        'JestWatchTogglePlugin needs at least a `setting` configuration parameter'
+      errorOut(
+        `${this.constructor.name} needs at least a ${chalk.bold.red(
+          'setting'
+        )} configuration parameter`
       )
     }
 
@@ -34,6 +41,16 @@ class JestWatchTogglePlugin {
     updateConfigAndRun({ [this.setting]: !globalConfig[this.setting] })
     return Promise.resolve()
   }
+}
+
+function errorOut(message) {
+  const comment = `${chalk.bold.red(
+    'Configuration documentation'
+  )}: ${chalk.underline(
+    'https://github.com/jest-community/jest-watch-toggle-config#readme'
+  )}
+  `.trim()
+  throw new ValidationError('Watch Toggle Config Error', message, comment)
 }
 
 const DEFAULT_CONFIG = {

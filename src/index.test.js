@@ -1,3 +1,6 @@
+const chalk = require('chalk')
+
+jest.doMock('chalk', () => new chalk.constructor({ enabled: false }))
 const Plugin = require('./index')
 
 describe('Jest Watch Toggle Plugin', () => {
@@ -11,7 +14,7 @@ describe('Jest Watch Toggle Plugin', () => {
 
     it('requires the setting parameter', () => {
       expect(() => new Plugin({ config: {} })).toThrow(
-        /needs at least a `setting` configuration parameter/
+        /needs at least a setting configuration parameter/
       )
     })
 

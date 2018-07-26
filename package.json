@@ -38,6 +38,10 @@
     "prettier": "^1.13.5"
   },
   "peerDependencies": {
-    "jest": ">= 23.4.1"
+    "jest": ">= 23.4.1",
+    "jest-validate": ">= 23.4.0"
+  },
+  "dependencies": {
+    "chalk": "^2.0.0"
   }
 }
