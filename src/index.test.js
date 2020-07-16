@@ -1,6 +1,6 @@
 const chalk = require('chalk')
 
-jest.doMock('chalk', () => new chalk.constructor({ enabled: false }))
+jest.doMock('chalk', () => new chalk.Instance({ level: 0 }))
 const Plugin = require('./index')
 
 describe('Jest Watch Toggle Plugin', () => {

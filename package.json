@@ -26,22 +26,22 @@
     "url": "git@github.com/jest-community/jest-watch-toggle-config"
   },
   "devDependencies": {
-    "eslint": "^4.19.1",
-    "eslint-config-prettier": "^2.9.0",
-    "eslint-config-standard": "^11.0.0",
-    "eslint-plugin-import": "^2.12.0",
-    "eslint-plugin-node": "^6.0.1",
-    "eslint-plugin-prettier": "^2.6.0",
-    "eslint-plugin-promise": "^3.8.0",
-    "eslint-plugin-standard": "^3.1.0",
-    "jest": "^23.3.0",
-    "prettier": "^1.13.5"
+    "eslint": "^7.4.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "jest": "^26.1.0",
+    "prettier": "^2.0.5"
   },
   "peerDependencies": {
     "jest": ">= 23.4.1",
     "jest-validate": ">= 23.4.0"
   },
   "dependencies": {
-    "chalk": "^2.0.0"
+    "chalk": "^4.1.0"
   }
 }
