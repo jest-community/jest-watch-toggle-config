@@ -1,7 +1,8 @@
-const chalk = require('chalk')
+import { Chalk } from 'chalk'
+import { jest } from '@jest/globals'
 
-jest.doMock('chalk', () => new chalk.Instance({ level: 0 }))
-const Plugin = require('./index')
+jest.unstable_mockModule('chalk', () => ({ default: new Chalk({ level: 0 }) }))
+const { default: Plugin } = await import('./index.js')
 
 describe('Jest Watch Toggle Plugin', () => {
   describe('at construction time', () => {

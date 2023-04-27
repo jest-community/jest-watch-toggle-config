@@ -5,6 +5,9 @@
     "jest": true,
     "node": true
   },
+  "parserOptions": {
+    "ecmaVersion": "latest"
+  },
   "rules": {
     "prettier/prettier": [
       "error",

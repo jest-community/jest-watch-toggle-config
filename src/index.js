@@ -1,7 +1,7 @@
-const chalk = require('chalk')
-const { ValidationError } = require('jest-validate')
+import { ValidationError } from 'jest-validate'
+import chalk from 'chalk'
 
-class JestWatchTogglePlugin {
+export default class JestWatchTogglePlugin {
   constructor({ config } = {}) {
     if (!config) {
       errorOut(
@@ -69,5 +69,3 @@ function getConfigValue(config, setting, defaults = {}) {
     String(defaults[setting] || '').trim()
   )
 }
-
-module.exports = JestWatchTogglePlugin
